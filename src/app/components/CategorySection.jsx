@@ -2,18 +2,11 @@
 import { BiSearch } from "react-icons/bi";
 
 import Image from "next/image";
-import { use, useRef, useState } from "react";
+import { useState } from "react";
 import img2 from "../../../images/Frame 1.png";
-function CategorySection({
-  categoryPromise,
-  subCategoriesPromise,
-  duasPromise,
-}) {
-  const categories = use(categoryPromise);
-  const subCategories = use(subCategoriesPromise);
-  const duas = use(duasPromise);
+function CategorySection({ categories, subCategories, duas, duaRefs }) {
   const [inputValue, setInputValue] = useState("");
-  const duaRefs = useRef({});
+
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const filteredCategories = categories.filter((cat) =>
     cat.cat_name_en.toLowerCase().includes(inputValue.toLowerCase())

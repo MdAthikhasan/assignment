@@ -1,15 +1,11 @@
 "use client";
-import { use, useRef } from "react";
 
 import { PiDotsNineBold } from "react-icons/pi";
 import img from "../../../images/allah 1 (Traced).png";
 import Toolbar from "./Toolbar";
 import Image from "next/image";
 
-function MainContent({ duasPromise }) {
-  const duas = use(duasPromise);
-
-  const duaRefs = useRef({});
+function MainContent({ duas, duaRefs }) {
   return (
     <div className="flex-1 p-4  md:p-6 flex flex-col overflow-y-auto">
       <div className="flex justify-around lg:justify-between items-center mb-6">
