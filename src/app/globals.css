@@ -1,26 +1,23 @@
 @import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f9fafb;
+  --text: #111827;
+  --font-inter: inter;
+  --bg-gray: #f3f4f6;
+  --bg-white: #ffffff;
+  --text-color: #1fa45b;
+  --text-size: 16px;
+  --arabic-font-face: kfgq;
+  --arabic-font-size: 26px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: "KFGQPC";
+  src: url("/fonts/UthmanTSBVer1.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.arabic-text {
+  font-family: "KFGQPC", serif;
 }
