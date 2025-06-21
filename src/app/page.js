@@ -7,6 +7,7 @@ import { MdOutlineSettings } from "react-icons/md";
 
 import CategorySection from "./components/CategorySection";
 
+import CategoriesLoading from "./components/Loading";
 import MainContent from "./components/MainContent";
 import RightSettingPanel from "./components/RightSettingPanel";
 export const dynamic = "force-static";
@@ -17,6 +18,7 @@ export default function Home() {
 
   const [showSidebar, setShowSidebar] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const duaRefs = useRef({});
 
@@ -36,6 +38,7 @@ export default function Home() {
         setDuas(duasData);
         setCategories(categoriesData);
         setSubCategories(subCategoriesData);
+        setLoading(false);
       } catch (err) {
         console.error("Error fetching data:", err);
       }
@@ -76,12 +79,17 @@ export default function Home() {
         </div>
 
         {/* Category Search and List */}
-        <CategorySection
-          categories={categories}
-          subCategories={subCategories}
-          duas={duas}
-          duaRefs={duaRefs}
-        />
+        {/* suspense dont work here some how */}
+        {loading ? (
+          <CategoriesLoading />
+        ) : (
+          <CategorySection
+            categories={categories}
+            subCategories={subCategories}
+            duas={duas}
+            duaRefs={duaRefs}
+          />
+        )}
       </div>
 
       {/* Main Content */}

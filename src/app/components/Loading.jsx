@@ -1,6 +1,6 @@
 import { BiSearch } from "react-icons/bi";
 
-export default function Loading() {
+export default function CategoriesLoading() {
   return (
     <div className="mb-4 animate-pulse">
       <h2 className="bg-[var(--text-color)] text-white text-sm font-semibold px-4 py-2 rounded-t-md">

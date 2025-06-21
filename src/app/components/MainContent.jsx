@@ -1,11 +1,34 @@
 "use client";
 
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { PiDotsNineBold } from "react-icons/pi";
 import img from "../../../images/allah 1 (Traced).png";
+import DuaSkeleton from "../loadingComponent/DuaSkeletion";
 import Toolbar from "./Toolbar";
-import Image from "next/image";
 
-function MainContent({ duas, duaRefs }) {
+function MainContent({ _, duaRefs }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [duas, setDuas] = useState([]);
+  useEffect(() => {
+    const fetchDuas = async () => {
+      try {
+        const response = await fetch(
+          "https://assignment-backend-ga98.onrender.com/api/duas"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch duas");
+        }
+        const data = await response.json();
+        setDuas(data);
+      } catch (error) {
+        console.error("Error fetching duas:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchDuas();
+  });
   return (
     <div className="flex-1 p-4  md:p-6 flex flex-col overflow-y-auto">
       <div className="flex justify-around lg:justify-between items-center mb-6">
@@ -21,7 +44,9 @@ function MainContent({ duas, duaRefs }) {
       </div>
 
       <div className="max-h-screen overflow-y-auto flex flex-col gap-4">
-        {duas.length > 0 ? (
+        {isLoading ? (
+          Array.from({ length: 4 }).map((_, idx) => <DuaSkeleton key={idx} />)
+        ) : duas.length > 0 ? (
           duas.map((dua, idx) => (
             <div
               key={idx}
